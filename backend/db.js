@@ -2,7 +2,27 @@ const mongoose = require("mongoose");
 
 mongoose.connect("mongodb://localhost:27017/paytm");
 
-const userSchema = new mongoose.Schema({
+const adminSchema = new mongoose.Schema({
+    
+    admin_id:{
+        type:String,
+        required:true,
+        unique: true,
+        trim: true,
+        lowercase: true
+    },
+    role:{
+        type: String,
+        required: true
+    },
+    club_id:{
+        type:String,
+        required:true,
+        unique: true,
+        trim: true,
+        lowercase: true
+    },
+
     username: {
         type: String,
         required: true,
@@ -12,27 +32,22 @@ const userSchema = new mongoose.Schema({
         minLength: 3,
         maxLength: 30
     },
+    email_address: {
+        type:String,
+        required: true,
+        unique: true,
+        trim: true,
+        lowercase: true,
+    },
     password: {
         type: String,
         required: true,
         minLength: 6
-    },
-    firstName: {
-        type: String,
-        required: true,
-        trim: true,
-        maxLength: 50
-    },
-    lastName: {
-        type: String,
-        required: true,
-        trim: true,
-        maxLength: 50
     }
 });
 
-const User = mongoose.model('User', userSchema);
+const Admin = mongoose.model('Admin', adminSchema);
 
 module.exports = {
-	User,
+	Admin,
 };
